@@ -141,6 +141,9 @@
       <find>\&quot;</find>
     </findStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -211,6 +214,7 @@
     <option name="width" value="1373" />
     <option name="height" value="837" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -316,7 +320,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.App">
+  <component name="RunManager" selected="JUnit.LogicServiceTest">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="eai.App" />
       <module name="yuning" />
@@ -446,8 +450,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.App" />
         <item itemvalue="JUnit.LogicServiceTest" />
+        <item itemvalue="Application.App" />
         <item itemvalue="JUnit.LogicServiceTest.getUsers" />
         <item itemvalue="JUnit.AppTest" />
       </list>
@@ -467,7 +471,7 @@
       <workItem from="1533097086214" duration="222000" />
       <workItem from="1533097340231" duration="6207000" />
       <workItem from="1533108970206" duration="6001000" />
-      <workItem from="1533119171246" duration="15197000" />
+      <workItem from="1533119171246" duration="15767000" />
     </task>
     <servers />
   </component>
@@ -504,7 +508,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32504000" />
+    <option name="totallyTimeSpent" value="33074000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="57" y="43" width="1373" height="837" extended-state="0" />
@@ -519,7 +523,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.32993445" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32896462" />
       <window_info anchor="right" id="Coverage" side_tool="true" weight="0.32993445" />
       <window_info anchor="bottom" id="Terminal" order="7" />
