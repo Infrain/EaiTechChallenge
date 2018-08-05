@@ -1,7 +1,7 @@
 package eai;
 
 import eai.controller.Handlers;
-import eai.service.LogicService;
+import eai.service.ContactService;
 
 /**
  * Hello world!
@@ -9,8 +9,8 @@ import eai.service.LogicService;
  */
 public class App 
 {
-    public static void main(String[] args) {//modify HOST and PORT in UserService.java
-        Handlers handlers = new Handlers(new LogicService());
+    public static void main(String[] args) {//modify HOST and PORT in ContactRepository.java
+        Handlers handlers = new Handlers(new ContactService());
     }
 
 

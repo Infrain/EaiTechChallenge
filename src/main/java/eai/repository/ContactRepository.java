@@ -1,4 +1,4 @@
-package eai.service;
+package eai.repository;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class UserService{
+public class ContactRepository {
 
 
     public final String HOST = "127.0.0.1";

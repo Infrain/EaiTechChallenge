@@ -4,18 +4,19 @@ import com.google.gson.*;
 import eai.entity.Contact;
 import eai.entity.StandardResponse;
 import eai.entity.StatusResponse;
+import eai.repository.ContactRepository;
 import org.elasticsearch.index.query.QueryStringQueryBuilder;
 
-public class LogicService {
+public class ContactService {
 
-    private UserService userService;
+    private ContactRepository contactRepository;
 
-    public LogicService(){
+    public ContactService(){
 
     }
 
-    public LogicService(UserService userService){
-        this.userService = userService;
+    public ContactService(ContactRepository contactRepository){
+        this.contactRepository = contactRepository;
     }
 
 
@@ -28,7 +29,7 @@ public class LogicService {
      * @throws Exception
      */
     public Object getUsers(int pageSize, int page, QueryStringQueryBuilder query) throws Exception {
-        Object res = userService.getUsers(pageSize,page,query);
+        Object res = contactRepository.getUsers(pageSize,page,query);
         JsonArray j = new JsonParser().parse(res.toString()).getAsJsonArray();
         return j;
     }
@@ -40,7 +41,7 @@ public class LogicService {
      * @throws Exception
      */
     public Object getWithName(String name) throws Exception {
-        JsonElement res = userService.getUser(name);
+        JsonElement res = contactRepository.getUser(name);
         JsonObject j = res.getAsJsonObject();
         if (j.get("name")==null) {
             return new Gson()
@@ -64,14 +65,14 @@ public class LogicService {
             return new Gson()
                     .toJson(new StandardResponse(StatusResponse.ERROR,"The address is too long"));
 
-        JsonElement res = userService.getUser(contact.getName());
+        JsonElement res = contactRepository.getUser(contact.getName());
         JsonObject j = res.getAsJsonObject();
         if (j.get("name")!=null) {
             return new Gson()
                     .toJson(new StandardResponse(StatusResponse.ERROR,"Name already exists, use put if needed"));
         }
 
-        res = userService.addUser(contact);
+        res = contactRepository.addUser(contact);
         j = res.getAsJsonObject();
 
         if (j.get("Response").getAsString().equals("success")){
@@ -99,13 +100,13 @@ public class LogicService {
             return new Gson()
                     .toJson(new StandardResponse(StatusResponse.ERROR,"The address is too long"));
 
-        JsonElement res = userService.getUser(name);
+        JsonElement res = contactRepository.getUser(name);
         JsonObject j = res.getAsJsonObject();
         if (j.get("name")==null) {
             return new Gson()
                     .toJson(new StandardResponse(StatusResponse.ERROR,"Name not found"));
         }
-        res = userService.updUser(name, contact);
+        res = contactRepository.updUser(name, contact);
         j = res.getAsJsonObject();
         if (j.get("Response").getAsString().equals("success")){
             return new Gson()
@@ -124,13 +125,13 @@ public class LogicService {
      * @throws Exception
      */
     public Object deleteWithName(String name) throws Exception {
-        JsonElement res = userService.getUser(name);
+        JsonElement res = contactRepository.getUser(name);
         JsonObject j = res.getAsJsonObject();
         if (j.get("name")==null) {
             return new Gson()
                     .toJson(new StandardResponse(StatusResponse.ERROR,"Name not found"));
         }
-        res = userService.delUser(name);
+        res = contactRepository.delUser(name);
         j = res.getAsJsonObject();
         if (j.get("Response").getAsString().equals("success")){
             return new Gson()
@@ -140,7 +141,7 @@ public class LogicService {
                 .toJson(new StandardResponse(StatusResponse.ERROR));
     }
 
-    public UserService getUserService(){
-        return userService;
+    public ContactRepository getContactRepository(){
+        return contactRepository;
     }
 }

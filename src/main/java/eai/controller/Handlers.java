@@ -3,17 +3,17 @@ package eai.controller;
 import com.google.gson.Gson;
 import com.google.gson.JsonParser;
 import eai.entity.Contact;
-import eai.service.LogicService;
-import eai.service.UserService;
+import eai.service.ContactService;
+import eai.repository.ContactRepository;
 import org.elasticsearch.index.query.QueryStringQueryBuilder;
 
 import static spark.Spark.*;
 
 public class Handlers {
-    private LogicService logicService;
+    private ContactService contactService;
 
-    public Handlers(LogicService logicService){
-        this.logicService = new LogicService(new UserService());
+    public Handlers(ContactService contactService){
+        this.contactService = new ContactService(new ContactRepository());
         setupEndPoints();
     }
 
@@ -22,7 +22,7 @@ public class Handlers {
         post("/contact", (request, response) -> { //insert contact, request body should be in Json format (easier for testing through http)
             Contact contact = new Gson().fromJson(
                     new JsonParser().parse(request.body()), Contact.class);
-            return(logicService.insertWithName(contact));
+            return(contactService.insertWithName(contact));
         });
 
 
@@ -38,12 +38,12 @@ public class Handlers {
                 query = request.queryParams("query");
 
             QueryStringQueryBuilder queryBuilder = new QueryStringQueryBuilder(query);
-            return(logicService.getUsers(pageSize,page,queryBuilder));
+            return(contactService.getUsers(pageSize,page,queryBuilder));
         });
 
 
         get("/contact/:name", (request, response) -> { //find contact with given name
-            return(logicService.getWithName(request.params(":name")));
+            return(contactService.getWithName(request.params(":name")));
 
         });
 
@@ -51,13 +51,13 @@ public class Handlers {
         put("/contact/:name", (request, response) -> { //update contact, request body should be in Json format (easier for testing through http)
             Contact contact = new Gson().fromJson(
                     new JsonParser().parse(request.body()), Contact.class);
-            return(logicService.updateWithName(request.params(":name"),contact));
+            return(contactService.updateWithName(request.params(":name"),contact));
 
         });
 
 
         delete("/contact/:name", (request, response) -> {
-            return(logicService.deleteWithName(request.params(":name")));
+            return(contactService.deleteWithName(request.params(":name")));
         });
     }
 
